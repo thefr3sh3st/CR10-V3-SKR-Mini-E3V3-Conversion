@@ -19,12 +19,7 @@ This guide details how to install the BigTreeTech SKR Mini E3 V3.0 motherboard i
 - BIGTREETECH SKR Mini E3 V3.0
 - A micro SD card
 - A BL Touch-style ABL probe
-- DIY BL Touch adapter
-   - A standard BL Touch cable
-   - A jumper wire with a male header
-   - 3 xh2.54 JST 3-pins female connectors
-- A Raspberry Pi for the klipper host
-- An xh2.54 JST 3-pins female connector
+- Sonic Pad
 - Control box fans
    - If you want to reuse old control box fans
       - 2 xh2.54 JST 2-pins female connectors
@@ -34,34 +29,24 @@ This guide details how to install the BigTreeTech SKR Mini E3 V3.0 motherboard i
       - A 12V 4010 or 4020 fan
       - A 12V 5010 or 5015 fan
       - LM2596 step-down module
-- SKR Mini E3 V3 adapter for CR-10 V2/V3 control box
-   - [Brass insert version](https://www.printables.com/model/1317711-skr-mini-e3-v3-adapter-for-cr-10-v2-v3-control-box)
-   - [Self-tapping version](https://www.printables.com/model/399024-skr-mini-e3-v3-adapter-for-cr10v23-control-box-wit)
-   - Recommended printing in ABS
 - 5 M3x10 screws
-- 5 M3 brass inserts (if you went with the brass insert version)
-- Cable tiles
-- Small wires for fans
 - Heat shrinks
-- 
+ 
 ## 🔧 Wiring Diagrams
 ### Creality 2.5.2
 ![Screenshot of my application](images/252-1.jpg)
 ### SKR Mini E3 V3
 ![Screenshot of my application](images/skr-1.png)
 ![Screenshot of my application](images/skr-3.png)
-### BL Touch Adapter
-![Screenshot of my application](images/bltouch-1.png)
 ## 🔧 Hardware Setup
 1. Configure jumper pins on SKR Mini E3 V3.0.
    - [User manual](https://github.com/bigtreetech/BIGTREETECH-SKR-mini-E3/blob/master/hardware/BTT%20SKR%20MINI%20E3%20V3.0/Hardware/BTT%20SKR%20MINI%20E3%20V3.0%20user%20manual.pdf).
    - For each axis (X, Y, Z) where you want to enable sensorless homing, you'll need to place a jumper on the corresponding pins .
    - Onboard 5V step-down module or external 5V power supply.
    - USB Power (recommended to remove this jumper to prevent the undervoltage warnings).
-2. Create the [BL Touch adapter](Wiring%20Diagram%20and%20References.pdf) using a jumper wire and a BL-Touch cable.![Screenshot of my application](images/IMG_1459.JPG)
-3. Combine two control box fans into a single xh2.54 JST 2-pins male connector, wire them in parallel.
-4. Cut off the extruder heater's connector, as the SKR Mini E3 V3.0 uses screw terminals.
-5. Everything else is plug and play!![Screenshot of my application](images/IMG_1463.JPG)
+2. Combine two control box fans into a single xh2.54 JST 2-pins male connector, wire them in parallel.
+3. Cut off the extruder heater's connector, as the SKR Mini E3 V3.0 uses screw terminals.
+4. Everything else is plug and play!![Screenshot of my application](images/IMG_1463.JPG)
    - The 12864 LCD only uses a single cable to the EXP3 header.
    - The X+ header is the filament sensor.
    - The Z+ header and D11 jumper pin are the BL Touch wires.
@@ -71,10 +56,9 @@ This guide details how to install the BigTreeTech SKR Mini E3 V3.0 motherboard i
    2. Rename the downloaded file to firmware.bin.
    3. Copy the file to the root directory of a FAT32 formatted micro SD card.
    4. Install the micro SD card into the SKR Mini E3 V3 and power up the board.
-   5. The Klipper firmware should be successfully installed on SKR Mini E3 V3. The firmware.bin file on the SD card will likely be renamed to firmware.cur after a successful flash.
-2. Install Raspbian and Klipper on the Raspberry Pi with [KIUAH](https://github.com/dw-0/kiauh)
-3. Install Printer Configuration File
-   1. Rename [printer_creality-cr10-v3-SKR-mini-E3-V3.0.cfg](printer_creality-cr10-v3-SKR-mini-E3-V3.0.cfg) to printer.cfg and put it in your config folder.
+   5. The Klipper firmware should be successfully installed on SKR Mini E3 V3. The firmware.bin file on the SD card will be renamed to FIRMWARE.CUR after a successful flash.
+2. Install Printer Configuration File
+   1. Rename [printer_creality-cr10-v3-SKR-mini-E3-V3.0.cfg](printer_creality-cr10-v3-SKR-mini-E3-V3.0.cfg) to printer.cfg and put it on the root of usb stick.
    2. Put printer.cfg in your config folder via a web interface (Fluid/Mainsail) or SFTP. The config folder location is:
    ```Bash
    ~/printer_data/config/
@@ -98,11 +82,6 @@ This guide details how to install the BigTreeTech SKR Mini E3 V3.0 motherboard i
       3. Replace the placeholder value with your SKR Mini E3 V3's MCU ID.
       4. Save and restart Klipper.
 5. Do [E-step calibration](https://www.klipper3d.org/Rotation_Distance.html) and start printing!
-
-## 🔨 What to do next?
-- [Adding a simple relay to control light](https://makeandcreate.de.cool/en/3d-printer-light-with-klipper/)(Remember to use 3.3V Relay module and wired V_in to 3v3)
-- [Wiring a ADXL345 directly to SKR mini](https://github.com/klich3/klipper---adxl345-skr-mini-e3-v3.0)
-- [Upgrade that horrible extruder to something repair-friendly with superior cooling.](/Hero%20Me%207%20CR-10v3.txt)
 
 ## 🔨 Resources
 
